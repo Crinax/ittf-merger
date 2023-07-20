@@ -1,37 +1,27 @@
 <script setup lang="ts">
-import AppFileLoader from './components/AppFileLoader.vue'
-
-import { ref, watch } from 'vue';
-
-const errorMessage = ref('');
-const file = ref<File | undefined>(undefined);
-
-watch(file, (newFile, oldFile) => {
-  if (newFile === undefined) {
-    return;
-  }
-
-  if (newFile?.type.startsWith('image')) {
-    errorMessage.value = 'Невозможно загрузить такой тип файла';
-    file.value = oldFile;
-  }
-
-  errorMessage.value = '';
-})
 </script>
 
 <template>
-  <div class="container">
-    <p v-if="errorMessage.length">
-      {{ errorMessage }}
-    </p>
-    <app-file-loader v-model="file" />
-  </div>
+  <el-upload
+    ref="upload"
+    class="upload-demo"
+    :limit="1"
+    :auto-upload="false"
+  >
+    <template #trigger>
+      <el-button type="primary">select file</el-button>
+    </template>
+    <el-button class="ml-3" type="success">
+      upload to server
+    </el-button>
+    <template #tip>
+      <div class="el-upload__tip text-red">
+        limit 1 file, new file will cover the old file
+      </div>
+    </template>
+  </el-upload>
 </template>
 
 <style scoped>
-.container {
-  display: flex;
-  flex-direction: column;
-}
+
 </style>

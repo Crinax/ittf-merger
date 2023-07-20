@@ -1,5 +1,10 @@
 import { createApp } from "vue";
-import "./styles.css";
 import App from "./App.vue";
+import ElementPlus from 'element-plus';
 
-createApp(App).mount("#app");
+import 'element-plus/theme-chalk/dark/css-vars.css';
+import 'element-plus/dist/index.css';
+
+createApp(App)
+  .use(ElementPlus)
+  .mount("#app");
