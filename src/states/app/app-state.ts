@@ -24,6 +24,7 @@ export const setup = () => {
   const notLoadedOrHasErrors = computed(() => !_isLoaded.value || _hasError.value);
 
   const markError = (err: unknown) => {
+    console.log({ err });
     _hasError.value = true;
     _errorResult.value = err;
     _isLoaded.value = true;
@@ -31,6 +32,7 @@ export const setup = () => {
   };
 
   const markSuccess = (result: RequestResult) => {
+    console.log({ result });
     _hasError.value = false;
     _errorResult.value = null;
     _isLoaded.value = true;
